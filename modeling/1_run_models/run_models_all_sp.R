@@ -68,7 +68,6 @@ for(i in species){
   weeds <- as.integer(dat$weeds)
 
 ## make a vector of data inputs to model
-
   data_vec <- c("N", "Fecundity", "N_i", "N_blocks", "Blocks", "trt", "acam", "amme", "anar", "brho","brni", "ceso", "gitr", "leni", "lomu", "mael", "mica", "pler", "plno", "taca","thir","twil", "weeds")
 
   print(i)
@@ -78,13 +77,13 @@ for(i in species){
   initials1<- list(initials, initials, initials)
 
 # Model ####
-  model.output[[paste0("ricker_",i)]] <- stan(file = 'Models/CW/ricker_model/random_effects_block/negative_binomial/CRW_ricker_RE_neg_binomial.stan', 
+  model.output[[paste0("ricker_",i)]] <- stan(file = 'modeling/1_run_models/ricker_model_stan.stan', 
                   data = data_vec, init = initials1, iter = 5000, chains = 3, thin = 2, 
                   control = list(adapt_delta = 0.9, max_treedepth = 15)) 
 
   PrelimFit <- model.output[[paste0("ricker_",i)]] 
 
 ## save model output
-  save(PrelimFit, file = paste0("Models/CW/ricker_model/random_effects_block/negative_binomial/posteriors/ricker_", i, "_posteriors_random_effects_neg_binomial_unfilt", date, ".rdata"))
+  save(PrelimFit, file = paste0("modeling/1_run_models/posteriors/", i, "_posteriors", date, ".rdata"))
 
 }
