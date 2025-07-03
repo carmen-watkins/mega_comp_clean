@@ -1,34 +1,57 @@
 ## Model diagnostics
+
+## this script checks rhat values, traceplots, and pairs plots. outputs print to pdfs. 
+
+# Set Up ####
+## load packages
 library(rstan)
 library(bayesplot)
 library(tidyverse)
 
+## set date of models
 date <- 20240714
 
+## create a species list
 species.list <- c("ACAM", "ANAR", "AMME", "BRHO", "BRNI", "CESO", "GITR", "LENI", "LOMU", "MAEL", "MICA", "PLER", "PLNO", "TACA", "THIR", "TWIL")
 
-fig_loc = "Models/CW/ricker_model/random_effects_block/negative_binomial/posterior_diagnostics/"
+## set location to save all diagnostics figures to
+fig_loc = "modeling/2_run_diagnostics/diagnostics/"
 
+## create df for rhat and neff values
+stat_diagnostics = data.frame(model.name = NA, Rhat = NA, Neff = NA)
 
+# Run Diagnostics ####
+## run diagnostics loop
 for(i in 1:length(species.list)){
   
+  ## select species
   species = species.list[i]
 
-## load model back in if needed
-load(paste0("Models/CW/ricker_model/random_effects_block/negative_binomial/posteriors/ricker_", species, "_posteriors_random_effects_neg_binomial_unfilt", date, ".rdata"))
+  ## print model to keep track of progress during loop
+  print(species)
+  
+  ## load model 
+  load(paste0("modeling/1_run_models/posteriors/", species, "_posteriors_", date, ".rdata"))
 
-# Diagnostics ####
-## check Rhat vals ####
-print(PrelimFit)
+  ## Rhat ####
+  ## save Rhat & Neff vals
+  Rhat = max(summary(PrelimFit)$summary[,"Rhat"],na.rm =T)
+  Neff = min(summary(PrelimFit)$summary[,"n_eff"],na.rm = T)
+  
+  ## put in df
+  tmp2 = data.frame(model.name = species, Rhat = Rhat, Neff = Neff)
+  
+  ## append to main df
+  stat_diagnostics = rbind(stat_diagnostics, tmp2)
 
-## Traceplots ####
-### epsilon/sigma
-traceplot(PrelimFit, pars = c("epsilon[1]", "epsilon[2]", "epsilon[3]", "epsilon[4]", "epsilon[5]", "epsilon[6]", "epsilon[7]", "epsilon[8]", "epsilon[9]", "epsilon[10]", "epsilon[11]", "sigma"))
+  ## Traceplots ####
+  ### epsilon/sigma
+  traceplot(PrelimFit, pars = c("epsilon[1]", "epsilon[2]", "epsilon[3]", "epsilon[4]", "epsilon[5]", "epsilon[6]", "epsilon[7]", "epsilon[8]", "epsilon[9]", "epsilon[10]", "epsilon[11]", "sigma"))
 
-ggsave(paste0(fig_loc, date, "/", species, "/", species, "_random_effects_traceplot_", date, ".png"), width = 8, height = 4)
+  ggsave(paste0(fig_loc, date, "/", species, "/", species, "_random_effects_traceplot_", date, ".png"), width = 8, height = 4)
 
-### lambda_base
-traceplot(PrelimFit, pars = c("lambda_base", "lambda_dev", "disp_dev"))
+  ### lambda_base
+  traceplot(PrelimFit, pars = c("lambda_base", "lambda_dev", "disp_dev"))
 
 ggsave(paste0(fig_loc, date, "/", species, "/", species, "_lambda_traceplot_", date, ".png"), width = 6, height = 3)
 
@@ -93,3 +116,13 @@ pairs(PrelimFit, pars = c("epsilon[7]", "epsilon[8]", "epsilon[9]", "epsilon[10]
 dev.off()
 
 }
+
+
+## remove NA
+stat_diagnostics = stat_diagnostics %>%
+  filter(!is.na(model.name))
+
+## save output
+write.csv(stat_diagnostics, paste0(fig_loc, "rhat_neff_", date, ".csv"))
+
+

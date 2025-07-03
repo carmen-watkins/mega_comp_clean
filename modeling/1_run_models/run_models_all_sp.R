@@ -96,6 +96,6 @@ for(i in species){
   PrelimFit = model.output[[paste0("ricker_",i)]] 
 
 ## save model output
-  save(PrelimFit, file = paste0("modeling/1_run_models/posteriors/", i, "_posteriors", date, ".rdata"))
+  save(PrelimFit, file = paste0("modeling/1_run_models/posteriors/", i, "_posteriors_", date, ".rdata"))
 
 }
