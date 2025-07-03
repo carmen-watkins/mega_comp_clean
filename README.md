@@ -3,8 +3,8 @@
 ## Folder Contents: 
 
 ### allometry - contains the code for cleaning allometry data & testing various model fits.
-  ### see data/allometry_model_parameters_20250703.csv for a clean file of model parameters. 
-  ### there is currently no .csv file of cleaned allometry data that contains all species. This could be created by joining all of the clean species level data from the cleaning scripts.
+- see data/allometry_model_parameters_20250703.csv for a clean file of model parameters.
+- there is currently no .csv file of cleaned allometry data that contains all species. This could be created by joining all of the clean species level data from the cleaning scripts.
 
 ### data - this contains a clean version of modeling data (model_dat_unfilt.csv)
 - also storing parameter summaries and model posteriors here.
