@@ -100,7 +100,7 @@ plot <- ggarrange(final1, final2, labels = "AUTO", ncol = 2, nrow = 1)
 annotate_figure(plot, top = text_grob("PLER", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/PLER.png", height = 3, width = 6.5)
+## ggsave("allometry/methods_figures/PLER.png", height = 3, width = 6.5)
 
 ## version for Jake/CAREER ####
 totbio1 <- ggplot(pler_allo, aes(x=total.biomass.g)) +
@@ -119,7 +119,7 @@ plot <- ggarrange(totbio1, totbio2, labels = "AUTO", ncol = 2, nrow = 1)
 annotate_figure(plot, top = text_grob("PLER", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/PLER_career_version.png", height = 3, width = 6.5)
+## ggsave("allometry/methods_figures/PLER_career_version.png", height = 3, width = 6.5)
 
 # Save Output ####
 ## save the model outputs

@@ -39,7 +39,7 @@ if(file.exists("/Users/carme/Dropbox (University of Oregon)/Mega_Competition/Dat
   lead <- "/Users/Marina/Documents/Dropbox/Mega_Competition/Data/Processing/Phytometer-Processing/Phytometer-Processing_entered/"
 } 
 ## basic cleaning function
-source("data_cleaning/phyto-processing_data-cleaning/basic_cleaning_function.R")
+source("raw_data_cleaning/phyto-processing_data-cleaning/basic_cleaning_function.R")
 
 lomu_phyto <- read.csv(paste0(lead, "LOMU_phyto-processing-redo_20230206.csv"))
 

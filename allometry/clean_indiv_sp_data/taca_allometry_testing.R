@@ -87,7 +87,7 @@ plot <- ggarrange(final1, final2, labels = "AUTO", ncol = 2, nrow = 1)
 annotate_figure(plot, top = text_grob("TACA", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/TACA.png", height = 3, width = 6.5)
+## ggsave("allometry/methods_figures/TACA.png", height = 3, width = 6.5)
 
 # Save Outputs ####
 TACA.allo.output <- data.frame(Species = "TACA", 

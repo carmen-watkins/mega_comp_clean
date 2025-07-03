@@ -65,7 +65,7 @@ plot <- ggarrange(final1, final2, labels = "AUTO", ncol = 2, nrow = 1)
 annotate_figure(plot, top = text_grob("MICA", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/MICA.png", height = 3, width = 6.5)
+## ggsave("allometry/methods_figures/MICA.png", height = 3, width = 6.5)
 
 # Save Output ####
 ## save the model outputs

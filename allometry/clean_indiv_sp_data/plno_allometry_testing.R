@@ -112,7 +112,7 @@ plot <- ggarrange(final1, final2, final3, final4, labels = "AUTO", ncol = 2, nro
 annotate_figure(plot, top = text_grob("PLNO", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/PLNO.png", height = 5, width = 6.5)
+## ggsave("allometry/methods_figures/PLNO.png", height = 5, width = 6.5)
 
 # Save Output ####
 ## save the model outputs

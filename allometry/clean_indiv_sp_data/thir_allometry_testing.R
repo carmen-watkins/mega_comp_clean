@@ -135,7 +135,7 @@ plot <- ggarrange(final1, final2, final3, final4, labels = "AUTO", ncol = 2, nro
 annotate_figure(plot, top = text_grob("THIR", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/THIR.png", height = 5.3, width = 6.5)
+## ggsave("allometry/methods_figures/THIR.png", height = 5.3, width = 6.5)
 
 # Save Outputs ####
 THIR.allo.output <- data.frame(Species = "THIR", 

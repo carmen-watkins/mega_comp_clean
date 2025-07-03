@@ -188,7 +188,7 @@ plot <- ggarrange(final1, final2, final3, final4,final5, final6, labels = "AUTO"
 annotate_figure(plot, top = text_grob("TWIL", 
                                       color = "black", face = "bold", size = 14))
 
-ggsave("allometry/methods_figures/TWIL.png", height = 8, width = 6.5)
+## ggsave("allometry/methods_figures/TWIL.png", height = 8, width = 6.5)
 
 
 # Save output ####
